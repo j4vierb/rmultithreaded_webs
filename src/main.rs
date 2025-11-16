@@ -11,7 +11,7 @@ use rmultithreaded_webs::ThreadPool;
 fn main() {
     println!("Hello, world!");
     let listener = match TcpListener::bind("127.0.0.1:7878") {
-        Err(e) => panic!("ERROR: the port is already being use!"),
+        Err(_) => panic!("ERROR: the port is already being use!"),
         Ok(tcp_listener) => tcp_listener,
     };
     let pool = ThreadPool::new(4);
@@ -58,4 +58,3 @@ fn handle_connection(mut stream: TcpStream) {
 
     stream.write_all(response.as_bytes()).unwrap();
 } 
-
